@@ -7,10 +7,15 @@ static func check_and_install_dependency(package_name : String) -> void:
 			install_dependency(package_name)
 
 static func check_dependency(package_name : String) -> bool:
+	print("Checking if %s is installed...\n" % package_name)
+	
 	var output = []
 	var exit_code : int = OS.execute("dotnet", ["list", "package"], output)
 	
-	print("Checking if %s is installed..." % package_name)
+	if exit_code != 0:
+		print("Cannot check packages!\nError Code: %d" % exit_code)
+		print_output(output)
+		return false
 	
 	for i : String in output:
 		if i.contains(package_name):
