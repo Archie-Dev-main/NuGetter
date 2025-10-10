@@ -4,7 +4,7 @@ class_name NuGetter
 
 static func check_and_install_dependency(package_name : String) -> void:
 	if not check_dependency(package_name):
-			install_dependency(package_name)
+		install_dependency(package_name)
 
 static func check_dependency(package_name : String) -> bool:
 	print("Checking if %s is installed...\n" % package_name)
